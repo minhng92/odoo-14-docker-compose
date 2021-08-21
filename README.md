@@ -77,9 +77,15 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L16](/blob/master/etc/odoo.conf#L16)!
+* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L16](/blob/master/etc/odoo.conf#L16)
 
 # Odoo container management
+
+**Run Odoo**:
+
+``` bash
+docker-compose up -d
+```
 
 **Restart Odoo**:
 
@@ -98,12 +104,14 @@ docker-compose down
 Completely remove Odoo and all databases!
 
 ``` sh
-sh remove_odoo.sh
+sudo sh remove_odoo.sh
 ```
 
 # Live chat
 
-Configuring **nginx** to use live chat feature:
+In [docker-compose.yml](/blob/master/docker-compose.yml), we exposed port **20014** for live-chat on host.
+
+Configuring **nginx** to activate live chat feature (in production):
 
 ``` conf
 #...
