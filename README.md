@@ -34,25 +34,9 @@ $ sudo yum install curl
 
 # Usage
 
-Change the folder permission to make sure that the container is able to access the directory:
-
-``` sh
-$ sudo chmod -R 777 addons
-$ sudo chmod -R 777 etc
-$ mkdir -p postgresql
-$ sudo chmod -R 777 postgresql
-```
-
-Increase maximum number of files watching from 8192 (default) to **524288**. In order to avoid error when we run multiple Odoo instances. This is an *optional step*:
-
-```
-$ if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F "fs.inotify.max_user_watches" /etc/sysctl.conf); else echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf; fi
-$ sudo sysctl -p    # apply new config immediately
-```
-
 Start the container:
 ``` sh
-$ docker-compose up
+docker-compose up
 ```
 
 * Then open `localhost:10014` to access Odoo 14.0. If you want to start the server with a different port, change **10014** to another value in **docker-compose.yml**:
@@ -62,12 +46,27 @@ ports:
  - "10014:8069"
 ```
 
-* Log file is printed @ **etc/odoo-server.log**
-
 Run Odoo container in detached mode (be able to close terminal without stopping Odoo):
 
 ```
-$ docker-compose up -d
+docker-compose up -d
+```
+
+**If you get the permission issue**, change the folder permission to make sure that the container is able to access the directory:
+
+``` sh
+$ git clone https://github.com/minhng92/odoo-14-docker-compose
+$ sudo chmod -R 777 addons
+$ sudo chmod -R 777 etc
+$ mkdir -p postgresql
+$ sudo chmod -R 777 postgresql
+```
+
+Increase maximum number of files watching from 8192 (default) to **524288**. In order to avoid error when we run multiple Odoo instances. This is an *optional step*. These commands are for Ubuntu user:
+
+```
+$ if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F "fs.inotify.max_user_watches" /etc/sysctl.conf); else echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf; fi
+$ sudo sysctl -p    # apply new config immediately
 ```
 
 # Custom addons
@@ -78,29 +77,20 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-
-``` conf
-[options]
-addons_path = /mnt/extra-addons
-data_dir = /etc/odoo
-logfile = /etc/odoo/odoo-server.log
-admin_passwd = minhng.info
-```
-
-* Default database password (**admin_passwd**) is `minhng.info`, please change it!
+* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L16](/blob/master/etc/odoo.conf#L16)!
 
 # Odoo container management
 
 **Restart Odoo**:
 
 ``` bash
-$ docker-compose restart
+docker-compose restart
 ```
 
 **Kill Odoo**:
 
 ``` bash
-$ docker-compose down
+docker-compose down
 ```
 
 # Remove Odoo & data
@@ -108,7 +98,7 @@ $ docker-compose down
 Completely remove Odoo and all databases!
 
 ``` sh
-$ sh remove_odoo.sh
+sh remove_odoo.sh
 ```
 
 # Live chat
