@@ -1,19 +1,27 @@
-# Installing Odoo 14 with one command
+# Quick install
+
+Installing Odoo 14 with one command.
 
 (Supports multiple Odoo instances on one server)
 
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
 ``` bash
-# 1st Odoo @ localhost:10014
-$ curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-14-docker-compose-one 10014
-
-# 2nd Odoo @ localhost:11014
-$ curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-14-docker-compose-two 11014
+curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-one 10014
 ```
 
+to set up first Odoo instance @ `localhost:10014`
+
+and
+
+``` bash
+curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-two 11014
+```
+
+to set up another Odoo instance @ `localhost:11014`
+
 Some arguments:
-* First argument (**odoo-14-docker-compose-one**): Odoo deploy folder
+* First argument (**odoo-one**): Odoo deploy folder
 * Second argument (**10014**): Odoo port
 
 If `curl` is not found, install it:
@@ -101,6 +109,22 @@ Completely remove Odoo and all databases!
 
 ``` sh
 $ sh remove_odoo.sh
+```
+
+# Live chat
+
+Configuring **nginx** to use live chat feature:
+
+``` conf
+#...
+server {
+    #...
+    location /longpolling/ {
+        proxy_pass http://0.0.0.0:20014/longpolling/;
+    }
+    #...
+}
+#...
 ```
 
 # docker-compose.yml

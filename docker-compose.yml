@@ -2,7 +2,8 @@ version: '2'
 services:
   db:
     image: postgres:13
-    # container_name: postgres13
+    container_name: postgres13
+    user: root
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
@@ -13,19 +14,24 @@ services:
 
   odoo14:
     image: odoo:14
-    # container_name: odoo14
+    container_name: odoo14
+    user: root
     depends_on:
       - db
     ports:
       - "10014:8069"
+      - "20014:8072" # live chat
     tty: true
-    command: -- --dev=reload
+    command: --
 #    command: odoo scaffold /mnt/extra-addons/custom_module
     environment:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
     volumes:
+      #- /etc/timezone:/etc/timezone:ro
+      #- /etc/localtime:/etc/localtime:ro
+      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
