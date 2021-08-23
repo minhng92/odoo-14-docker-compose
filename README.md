@@ -77,7 +77,7 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L16](/blob/master/etc/odoo.conf#L16)
+* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
 
 # Odoo container management
 
@@ -109,7 +109,7 @@ sudo sh remove_odoo.sh
 
 # Live chat
 
-In [docker-compose.yml](/blob/master/docker-compose.yml), we exposed port **20014** for live-chat on host.
+In [docker-compose.yml#L23](docker-compose.yml#L23), we exposed port **20014** for live-chat on host.
 
 Configuring **nginx** to activate live chat feature (in production):
 
