@@ -93,7 +93,7 @@ docker-compose up -d
 docker-compose restart
 ```
 
-**Kill Odoo**:
+**Stop Odoo**:
 
 ``` bash
 docker-compose down
@@ -109,7 +109,7 @@ sudo sh remove_odoo.sh
 
 # Live chat
 
-In [docker-compose.yml#L23](docker-compose.yml#L23), we exposed port **20014** for live-chat on host.
+In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20014** for live-chat on host.
 
 Configuring **nginx** to activate live chat feature (in production):
 
