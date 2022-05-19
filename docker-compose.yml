@@ -29,8 +29,8 @@ services:
     volumes:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
-      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
-      - ./addons:/mnt/extra-addons
-      - ./etc:/etc/odoo
+      - D:/docker_odoo_vm/entrypt:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
+      - D:/docker_odoo_vm/addons:/mnt/extra-addons
+      - D:/docker_odoo_vm/odoo:/etc/odoo
     restart: always             # run as a service
     
