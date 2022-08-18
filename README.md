@@ -132,3 +132,8 @@ server {
 ![odoo-14-sales](screenshots/odoo-14-sales-screen.png)
 
 ![odoo-14-form](screenshots/odoo-14-sales-form.png)
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
