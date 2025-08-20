@@ -132,3 +132,9 @@ server {
 ![odoo-14-sales](screenshots/odoo-14-sales-screen.png)
 
 ![odoo-14-form](screenshots/odoo-14-sales-form.png)
+
+## ☕ Buy Me a Coffee
+
+If you find this project helpful, consider buying me a coffee to support my work!
+
+<a href="https://buymeacoffee.com/minhng.info" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
